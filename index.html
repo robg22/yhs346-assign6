@@ -6,6 +6,18 @@
     <link rel="stylesheet" type="text/css" href="css/assign3.css" >
 </head>
 <body>
+<?php
+    if (!is_array($_POST) || empty($_POST)) {
+        if(!isset($_POST['mode']) || !strlen($_POST['day'])){
+            $error = "You did not enter a mode";
+        }else{
+            $error = $_POST['mode'];
+        }
+     }
+?>
+
+<h1><?php echo "$error"; ?> </h1>
+
 <div id="container">
     <div id="title">
 
