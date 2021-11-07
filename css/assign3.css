@@ -54,6 +54,11 @@ td{
     color: white;
     width: 150px;
 }
+#whiteLeftBox {
+    background-color: white;
+    width: 150px;
+    color: Black;
+}
 #centerBox{
 
     border-width: 3px;

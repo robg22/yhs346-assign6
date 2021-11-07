@@ -4,19 +4,56 @@
         Web Technologies CS4413
     </title>
     <link rel="stylesheet" type="text/css" href="css/assign3.css" >
-</head>
-<body>
-<?php
-if (!is_array($_POST) || empty($_POST)) {
-    if(!isset($_POST['mode']) || !strlen($_POST['day'])){
-        $error = "You did not enter a mode";
-    }else{
-        $error = $_POST['mode'];
-    }
-}
-?>
+    <?php
+	if (!is_array($_POST) || !empty($_POST)) {
+    		if(isset($_POST['utsa'])){
+        		if (isset($_COOKIE['theme'])){
+                                $current = $_COOKIE['theme'];
+                                setcookie("theme", "utsa", time()-3600);
+				$leftB = "leftBox";
+				$right = "rightBox";
 
-<h1><?php echo "$error"; ?> </h1>
+                        }
+                        else{
+                                setcookie("theme", "white", time() +(10 * 365 * 24 * 60 * 60));
+				$leftB = "whiteLeftBox";
+				$right = "white";
+                        }
+                }
+    
+    		if(isset($_POST['dark'])){
+        		if (isset($_COOKIE['dark'])){
+				$current = $_COOKIE['dark'];
+				setcookie("dark", "white", time()-3600);
+				$backColor = "white";
+				
+			}
+			else{
+				setcookie("dark", "grey", time() +(10 * 365 * 24 * 60 * 60));
+				$backColor = "grey";
+			}
+    		}
+    
+	}
+	if(!isset($backColor)){
+		if(!isset($_COOKIE['dark']))
+			$backColor = "white";
+		else
+			$backColor = $_COOKIE['dark'];
+	}
+	if(!isset($leftB) || !isset($right) ){
+		if(!isset($_COOKIE['theme'])){
+			$right = "rightBox";
+			$leftB = "leftBox";
+		}else{
+			$right = "white";
+			$leftB = "whiteLeftBox";
+		}
+	}
+?>
+</head>
+<body style = "background-color: <?php echo "$backColor"; ?> ">
+
 
 <div id="container">
     <div id="title">
@@ -38,7 +75,7 @@ if (!is_array($_POST) || empty($_POST)) {
     <div class = "table">
         <table>
             <tr>
-                <td id = "leftBox">
+	    <td id = <?php echo "$leftB"; ?> >
                     <h3 class = "center"> Menu </h3>
                     <hr>
                     <ul>
@@ -76,7 +113,7 @@ if (!is_array($_POST) || empty($_POST)) {
                     </div>
 
                 </td>
-                <td id = "rightBox">
+                <td id = <?php echo "$right"; ?> >
                     <h3 class = "center">Enrolled Courses</h3>
                     <hr>
                     <ol type="1">
@@ -89,9 +126,12 @@ if (!is_array($_POST) || empty($_POST)) {
                     <h3 class = "center">Theme Toggles</h3>
                     <hr>
 
-                    <form action = "index.html" method="post">
-                        <button name = "mode" value="utsa">UTSA THEME</button>
-                        <button name = "mode" value="dark">DARK MODE</button>
+                    <form action = "index.php" method="post">
+			<label for="day">Enter a day of the week:</label>
+			<input type="text" id="day" name="day">
+			<input type="submit" value = "Submit">
+			<input type="submit" name= "utsa" value="utsa"/>
+                        <input type="submit" name = "dark" value="dark"/>
                     </form>
 
                 </td>
