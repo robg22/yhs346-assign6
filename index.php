@@ -52,7 +52,7 @@
 	}
 ?>
 </head>
-<body style = "background-color: <?php echo "$backColor"; ?> ">
+<body id = <?php echo "$backColor"; ?> >
 
 
 <div id="container">
@@ -127,9 +127,6 @@
                     <hr>
 
                     <form action = "index.php" method="post">
-			<label for="day">Enter a day of the week:</label>
-			<input type="text" id="day" name="day">
-			<input type="submit" value = "Submit">
 			<input type="submit" name= "utsa" value="utsa"/>
                         <input type="submit" name = "dark" value="dark"/>
                     </form>

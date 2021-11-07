@@ -5,6 +5,9 @@
     margin: auto;
 
 }
+#grey{
+	background-color: grey;
+}
 hr{
 
     clear: both
