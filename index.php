@@ -25,7 +25,7 @@
         		if (isset($_COOKIE['dark'])){
 				$current = $_COOKIE['dark'];
 				setcookie("dark", "white", time()-3600);
-				$backColor = "white";
+				$backColor = "backWhite";
 				
 			}
 			else{
@@ -37,7 +37,7 @@
 	}
 	if(!isset($backColor)){
 		if(!isset($_COOKIE['dark']))
-			$backColor = "white";
+			$backColor = "backWhite";
 		else
 			$backColor = $_COOKIE['dark'];
 	}
