@@ -80,7 +80,7 @@
                     <hr>
                     <ul>
                         <li><a href="https://github.com/robg22">GitHub</a></li>
-                        <li><a href="courses.html" >Courses</a></li>
+                        <li><a href="courses.php" >Courses</a></li>
                         <li><a href="https://www.utsa.edu/"> UTSA Website </a></li>
                     </ul>
 
