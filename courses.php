@@ -4,6 +4,18 @@
         Courses
     </title>
 	<link rel="stylesheet" type="text/css" href="css/courses.css">
+    <?php
+    session_start();
+    if(isset($_SESSION["log"])){
+        if(!$_SESSION["log"] == 1){
+            header("Location: login.php");
+            exit;
+        }
+    }else{
+        header("Location: login.php");
+        exit;
+    }
+    ?>
 <?php 
 	require_once ".env.php";
 
@@ -39,8 +51,10 @@
 	if (is_array($_POST) && !empty($_POST)) {
 		if(isset($_POST['courseName'])){
 			$courseName = $_POST['courseName'];
-			if(strlen($courseName) <= 0)
-				$error = $error . "invalid course name!";
+			if(strlen($courseName) <= 0) {
+                $error = "";
+                $error = $error . "invalid course name!";
+            }
 		}
 
 		if(isset($_POST['courseNumber'])){
@@ -86,10 +100,11 @@
 			mysqli_stmt_bind_param($stmt, "sssdi", $courseName, $courseNum ,$description,$finalGrade,$enrolled);
 
 			// execute the statement with the bound variables
-    			if (mysqli_stmt_execute($stmt))
-        			echo("<p>Inserted course $number</p>");
+    			if (mysqli_stmt_execute($stmt)) {
+                    //echo("<p>Inserted course $courseNum</p>");
+                }
     			else
-        			echo("<p class='error'>Failed to insert course $number</p>");
+        			echo("<p class='error'>Failed to insert course $courseNum</p>");
 
 
 			
@@ -107,7 +122,6 @@
 </head>
 <body>
     <h1>Courses</h1>
-	<?php echo "$suc" ;?>
   
     <h3><a href="index.php">Back to home page</a></h3>
     <hr>

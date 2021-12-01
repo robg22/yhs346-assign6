@@ -1,0 +1,13 @@
+
+.main{
+    position: relative;
+}
+h1{
+    text-align: center;
+}
+.forms{
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    margin: -35px 0 0 -35px;
+}

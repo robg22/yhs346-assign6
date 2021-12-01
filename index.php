@@ -5,6 +5,18 @@
     </title>
     <link rel="stylesheet" type="text/css" href="css/assign3.css" >
     <?php
+        session_start();
+        if(isset($_SESSION["log"])){
+            if(!$_SESSION["log"] == 1){
+                header("Location: login.php");
+                exit;
+            }
+        }else{
+            header("Location: login.php");
+            exit;
+        }
+    ?>
+    <?php
 	if (!is_array($_POST) || !empty($_POST)) {
     		if(isset($_POST['utsa'])){
         		if (isset($_COOKIE['theme'])){
@@ -59,14 +71,22 @@
     <div id="title">
 
         <div id="left">
+            <form action = logout.php>
+                <div>
+                    <input type='submit' value='LOGOUT'>
+                </div>
+            </form>
             <h1 style="color: #090909">
                 Robert Gonzalez <br>
                 Software Engineer
             </h1>
+
         </div>
         <div class="right">
             <img id = "image1" src="images/catHat.png" alt="catHat" >
         </div>
+
+
 
 
     </div>
